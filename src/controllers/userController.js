@@ -9,7 +9,7 @@ const profile=function(req,res){
 
 }
 const signUp=function(req,res){// after this we are going to route this in routes/users.js file
-  step:2;  if(req.isAuthenticated()){
+  step:2;  if(req.isAuthenticated()){//here we telling that if the user is signin or authenticated then no need to go to singnin or signUp page directly redirect to profile page
     return res.redirect('/users/profile');
   }
     return res.render('users/user_sign_up',{
@@ -55,7 +55,14 @@ const create=function(req,res){// here we are requesting the post request to get
     })
 }
 const createSession=function(req,res){// here we are creating the session 
-    return res.status(200).end();
+    // return res.status(200).end();
+    return res.redirect('/');
+}
+const destroySession = function(req,res){
+    req.logout(function(err){
+        if(err){return next(err);}
+        return res.redirect('/');
+    });
 }
 
 module.exports={
@@ -64,5 +71,6 @@ module.exports={
     signUp,
     create,
     createSession,
+    destroySession 
 }
 
