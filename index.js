@@ -7,6 +7,7 @@ step:10; const connect=require('./src/config/database');
 step:8;var expressLayouts=require('express-ejs-layouts'); // here we are installing the custom layout in expres js
 step:12;const session=require('express-session');
 step:12;const passport=require('passport');
+const mongoStore=require('connect-mongo');
 // step:12;const passportlocal=require('./src/config/passport-local-strategy');
 
 
@@ -42,7 +43,18 @@ step:12; app_express.use(session({
     resave:false,
     cookie:{
         maxAge:6000000
-    }
+    },
+    store:new mongoStore({
+        mongoUrl:'mongodb://localhost/twitter_dev2',
+            // mongooseConnection:connect,
+            autoRemove:'disable'
+       
+    },function(err){
+        if(err){
+            console.error(err);
+        }
+        console.log('connect-mongoose setup done');
+    })
 }))
 
 
