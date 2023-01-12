@@ -21,7 +21,7 @@ const signIn=function(req,res){
 }
   
 const create=function(req,res){// here we are requesting the post request to get the req.body user information
-//    console.log(req.body);
+   console.log(req.body);
 //    return res.status(200).end();
     // writing the user authentication logic
     // ****************IMPORTANT*******************
@@ -57,7 +57,6 @@ module.exports={
     signIn,
     signUp,
     create,
-    createSession
-
+    createSession,
 }
 

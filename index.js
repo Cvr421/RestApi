@@ -7,7 +7,7 @@ step:10; const connect=require('./src/config/database');
 step:8;var expressLayouts=require('express-ejs-layouts'); // here we are installing the custom layout in expres js
 step:12;const session=require('express-session');
 step:12;const passport=require('passport');
-step:12;const passportlocal=require('./src/config/passport-local-strategy');
+// step:12;const passportlocal=require('./src/config/passport-local-strategy');
 
 
 // step:12; const cors=require('cors');
@@ -46,11 +46,11 @@ step:12; app_express.use(session({
 }))
 
 
-app_express.use(passport.initialize());
-app_express.use(passport.session());
+step:12;app_express.use(passport.initialize());
+step:12;app_express.use(passport.session());
+step:13;app_express.use(passport.setAuthenticatedUser);
 
-
- step:5; app_express.use('/',router);
+step:5; app_express.use('/',router);
 step:1;app_express.listen(3000,async()=>{//here we are startig the express applicaiton to the server 3000
     step:10 ; await connect();
     console.log("Server started at 3000!!!")

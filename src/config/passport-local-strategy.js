@@ -1,4 +1,4 @@
-step:1;const passport=require('passport');// imporiting the passport module 
+step:1; const passport=require('passport');// imporiting the passport module 
 const localStrategy=require('passport-local').Strategy;// importing the passport module local strategy
 step:2; const User=require('../models/user');// importing the mongodb data base schema to the email of the user
 passport.use(new localStrategy({
@@ -16,6 +16,11 @@ passport.use(new localStrategy({
         return done(null,user);
     })
 }));
+
+
+
+
+
 
 
 
@@ -37,5 +42,31 @@ passport.deserializeUser(function(id,done){
         done(null,user);
     })
 })
+
+passport.checkAuthentication = function(req,res,next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    return res.redirect('/users/signin');
+}
+passport.setAuthenticatedUser=function(req,res,next){
+    console.log(req);
+    if(req.isAuthenticated()){
+        res.locals.user=req.user;
+    }
+  next();
+}
+
 module.exports=passport;
 
+// passport.checkAuthentication=function(req,res,next){
+//     if(req.isAuthenticated()){
+//         return next();
+//     }
+// }
+// passport.setAuthenticatedUser=function(req,res,next){
+//     if(req.isAuthenticated()){
+//         req.localStrategy.user=req.user;
+//     }
+//     next();
+// }
