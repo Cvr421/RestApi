@@ -12,7 +12,13 @@
 
 
     <h1>Welcome to <%= title %></h1>
-
+     <section>
+        <h4>Create A Tweet!</h4>
+        <form action="/tweets/Create" method="POST">
+            <textarea name="content" id="" cols="30" rows="10" placeholder="Your tweet..."></textarea>
+            <input type="submit" value="Create Tweet">
+        </form>
+     </section>
 
     <!-- <%-include('util/_footer'); %> -->
     

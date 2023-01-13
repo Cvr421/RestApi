@@ -14,7 +14,7 @@ step:14; const sassMiddleware=require('node-sass-middleware');
 
 // step:12; const cors=require('cors');
 const app_express=express(); //refereing the express js to app variale
-app_express.use(sassMiddleware({
+step:14;app_express.use(sassMiddleware({
     src:'./src/assets/scss',
     dest:'./src/assets/css',
     debug:true,
