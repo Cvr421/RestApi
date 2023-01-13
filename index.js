@@ -8,11 +8,20 @@ step:8;var expressLayouts=require('express-ejs-layouts'); // here we are install
 step:12;const session=require('express-session');
 step:12;const passport=require('passport');
 const mongoStore=require('connect-mongo');
+step:14; const sassMiddleware=require('node-sass-middleware');
 // step:12;const passportlocal=require('./src/config/passport-local-strategy');
 
 
 // step:12; const cors=require('cors');
 const app_express=express(); //refereing the express js to app variale
+app_express.use(sassMiddleware({
+    src:'./src/assets/scss',
+    dest:'./src/assets/css',
+    debug:true,
+    outputStyle:'expanded',
+    prefix:'/css'
+}));
+
 
 step:11;app_express.use(json());
 step:11;app_express.use(urlencoded({extended:true}));
