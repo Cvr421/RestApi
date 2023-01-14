@@ -12,8 +12,15 @@ const tweetSchema=new mongoose.Schema({
 
     user:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'User'
-    }
+        ref:'User',
+        required:true
+    },
+    comments:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Comment"
+        }
+    ]
 },{timestamps:true});
 const Tweet=mongoose.model('Tweet',tweetSchema);
 module.exports=Tweet;

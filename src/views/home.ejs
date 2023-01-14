@@ -12,6 +12,7 @@
 
 
     <h1>Welcome to <%= title %></h1>
+    <% if(locals.user) { %>
      <section>
         <h4>Create A Tweet!</h4>
         <form action="/tweets/Create" method="POST">
@@ -19,6 +20,33 @@
             <input type="submit" value="Create Tweet">
         </form>
      </section>
+     <% } %> 
+     <div>
+        <ul>
+            <h3>All Tweets with name</h3>
+            <% for(tweet of tweets){ %>
+                
+            <li><h2><%= tweet.content %></h2></li>
+            <small><b>User name: <%= tweet.user.name %></b> </small>
+            
+      <div>
+            <% if (locals.user) { %>
+                <form action="/comments/create" method="POST">
+                    <input type="text" name="content" id="" placeholder="Your comment">
+                    <input type="hidden" name="tweet" id="" value="<%= tweet._id %>">
+                    <input type="submit" name="" id="" value="Add Comment">
+                </form>
+            <% } %>  
+        </div>
+        
+        <hr>
+
+
+
+
+           <%  } %> 
+        </ul>
+     </div>
 
     <!-- <%-include('util/_footer'); %> -->
     
