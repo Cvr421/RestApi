@@ -27,10 +27,17 @@
             <h3>All Tweets with name</h3>
             <% for(tweet of tweets){ %>
                 
-            <li><h2><%= tweet.content %></h2></li>
+                <li><h2><%= tweet.content %></h2> 
+                    <% if(locals.user && locals.user.id == tweet.user.id) { %>  
+                        <form action="/tweets/destroy/<%= tweet.id%>" method="GET">
+                            <input type="submit" value="Remove">
+                        </form>
+                    <% } %> 
+             </li>
+
             <small><b>User name: <%= tweet.user.name %></b> </small>
             
-      <div>
+         <div>
             <% if (locals.user) { %>
                 <form action="/comments/create" method="POST">
                   
@@ -57,7 +64,7 @@
         </div>
     <hr>
      
-    <!-- <%  } %>  -->
+    <%  } %> 
       </ul>
 
 </div>
