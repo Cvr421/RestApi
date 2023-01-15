@@ -1,7 +1,7 @@
 const Tweet =require('../models/tweet');
 const create=function(req,res){
 Tweet.create({
-        content: req.body.content,
+        content: req.body.content,// we are actually storing into the mongodb database as this parameter
         user: req.user._id
     },function(err,tweet){
         if(err){
@@ -11,6 +11,9 @@ Tweet.create({
         return res.redirect('back');
     })
 
-
+   
 }
-module.exports={create};
+module.exports={create};  
+
+
+      
