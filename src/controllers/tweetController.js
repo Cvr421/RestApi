@@ -17,14 +17,14 @@ const create=function(req,res){
    
 }
 const destroy =function(req,res){
-  console.log("Hit");
+// console.log(req)
   Tweet.findById(req.params.id,function(err,tweet){
     if(err){
         return res.redirect('/');
     }
-    if(tweet.user==req.user.id){
+    if(tweet.user == req.user.id){
         tweet.remove();
-        Comment.deleteMany({tweet:req.params.id},function(err){
+        Comment.deleteMany({tweet: req.params.id},function(err){
             return res.redirect('back');
         });
     }else{

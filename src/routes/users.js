@@ -7,16 +7,21 @@ const {profile,
     signIn,
     signUp,
     create,
+    update,
     createSession,
     destroySession }=require('../controllers/userController')
 
 const router=exprees.Router();
 
 
-router.get('/profile',checkAuthentication,profile)
+router.get('/profile/:id',passport.checkAuthentication,profile)
 router.get('/signup',signUp);
 router.get('/signin',signIn);
 router.post('/create',create);
+
+step:3;router.post('/update/:id',passport.checkAuthentication, update);
+
+
 
 step:2;router.post('/create-session',passport.authenticate(
     'local',

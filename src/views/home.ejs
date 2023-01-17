@@ -8,73 +8,48 @@
 </head>
 
 <body> -->
-    <!-- <%-include('util/_header'); %> -->
+<!-- <%-include('util/_header'); %> -->
 
 
-    <h1>Welcome to <%= title %></h1>
-    <% if(locals.user) { %>
-     <section>
+<h1>Welcome to <%= title %>
+</h1>
+<% if(locals.user) { %>
+    <section>
         <h4>Create A Tweet!</h4>
         <form action="/tweets/Create" method="POST">
-      
+
             <textarea name="content" id="" cols="30" rows="10" placeholder="Your tweet.." required></textarea>
-            <input type="submit" value="Create Tweet"> 
+            <input type="submit" value="Create Tweet">
         </form>
-     </section>
-     <!-- <% } %>  -->
-     <div>
+    </section>
+    <!-- <% } %>  -->
+
+    
+    <div>
         <ul>
             <h3>All Tweets with name</h3>
             <% for(tweet of tweets){ %>
-                
-                <li><h2><%= tweet.content %></h2> 
-                    <% if(locals.user && locals.user.id == tweet.user.id) { %>  
-                        <form action="/tweets/destroy/<%= tweet.id%>" method="GET">
-                            <input type="submit" value="Remove">
-                        </form>
-                    <% } %> 
-             </li>
 
-            <small><b>User name: <%= tweet.user.name %></b> </small>
-            
-         <div>
-            <% if (locals.user) { %>
-                <form action="/comments/create" method="POST">
-                  
-                    <input type="text" name="content" id="" placeholder="Your comment" required>
-                    <input type="hidden" name="tweet" id="" value="<%= tweet._id %>">
-                    <input type="submit" name="" id="" value="Add Comment">
-                </form>
-            <% } %> 
-                    <div>
-                <ul>
-                   
-                    
-                    <% for(comment of tweet.comments) { %> 
-                        <p>   
-                            <%= comment.content %>
-                            <% if(locals.user && locals.user.id == comment.user.id){%>
-                            <small><a href="/comments/destroy/<%= comment.id%>">Delete </a></small>
-                            
-                            
-                          <%  }%>
-                            <br>
-                            <small><%= comment.user.name %> </small> 
-                        </p>
-                    <% } %> 
-                     
-                         
-                </ul>
-            </div>  
-        </div>
-    <hr>
-     
-    <%  } %> 
-      </ul>
+                <%- include('./tweets/_tweet') %>
 
-</div>
-   
+                    <% } %>
+        </ul>
+
+    </div>
+
+
+    <section>
+        <h3>Users</h3>
+        <% for(user of users) { %>
+            <p>
+                <a href="/users/profile/<%= user.id %> ">
+                    <%= user.name %>
+                </a>
+            </p>
+            <% } %>
+    </section>
+
     <!-- <%-include('util/_footer'); %> -->
-    
-<!-- </body>
+
+    <!-- </body>
 </html> -->
