@@ -2,26 +2,29 @@ const Tweet =require('../models/tweet');
 const Comment =require('../models/comment');
 
 
-const create=function(req,res){
-    Tweet.create({
-        content: req.body.content,// we are actually storing into the mongodb database as this parameter
-        user: req.user._id
-    },function(err,tweet){
+const create= async function(req,res){
+    try{
+       await Tweet.create({
+            content: req.body.content,// we are actually storing into the mongodb database as this parameter
+            user: req.user._id
+        })
+         return res.redirect('back');
+        
+    }catch(err){
         if(err){
             console.error("Error in creating tweet")
             return;
         }
-        return res.redirect('back');
-    })
+    }
+  
    
    
 }
-const destroy =function(req,res){
+const destroy = async function(req,res){
 // console.log(req)
-  Tweet.findById(req.params.id,function(err,tweet){
-    if(err){
-        return res.redirect('/');
-    }
+try{
+    const tweet= await Tweet.findById(req.params.id)
+
     if(tweet.user == req.user.id){
         tweet.remove();
         Comment.deleteMany({tweet: req.params.id},function(err){
@@ -30,7 +33,12 @@ const destroy =function(req,res){
     }else{
         return res.redirect('back');
     }
-  })
+}catch(err){
+  console.error(err);
+  return;
+}
+
+  
 }
 module.exports={create,destroy};  
 
