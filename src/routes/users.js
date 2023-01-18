@@ -26,8 +26,7 @@ step:3;router.post('/update/:id',passport.checkAuthentication, update);
 step:2;router.post('/create-session',passport.authenticate(
     'local',
     {
-        successRedirect:'/',
-        failureRedirect:'/signin'
+       failureRedirect:'/signin'
     }
 ),createSession);
 

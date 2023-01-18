@@ -84,13 +84,24 @@ const update = function(req, res) {
 
 const createSession=function(req,res){// here we are creating the session 
     // return res.status(200).end();
-    return res.redirect('/');
+
+
+ req.flash('success','Signed In SuccessFully');
+ console.log("flash",req.flash);
+ return res.redirect('/');
+
+
+
+  
 }
 const destroySession = function(req,res){
+    // req.logout();
     req.logout(function(err){
         if(err){return next(err);}
+        req.flash('success', 'Signed Out Successfully');
         return res.redirect('/');
     });
+   
 }
 
 module.exports={

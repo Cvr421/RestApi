@@ -12,7 +12,8 @@ step:1;module.exports.root= async function(req,res){
         populate:{
             path:'user'
         }
-    }).sort({"createdAt":-1}).exec();
+    }).sort({"createdAt":-1}).exec();// sorting the tweet on the bases of created time in decending order
+    
     // console.log(tweets);
     let fetchedTweets=tweets;
        const users = await User.find({});

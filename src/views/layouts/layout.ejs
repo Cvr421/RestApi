@@ -12,6 +12,17 @@
 <body>
     <%- include('../util/_header'); %>
 
+    <div id="flash-section">
+        <% if(flash.success && flash.success.length > 0) {%> 
+            <h4><%= flash.success %> </h4>
+        <% } %> 
+        <% if(flash.info && flash.info.length > 0) {%> 
+            <h4><%= flash.info %> </h4>
+        <% } %> 
+    </div>
+    
+
+
      <%- body %>
 
    <%- include('../util/_footer'); %>

@@ -10,6 +10,8 @@ step:12;const passport=require('passport');
 const mongoStore=require('connect-mongo');
 step:14; const sassMiddleware=require('node-sass-middleware');
 // step:12;const passportlocal=require('./src/config/passport-local-strategy');
+step:15;const flash = require('connect-flash');
+step:15;const {setFlash} = require('./src/config/middleware');
 
 
 // step:12; const cors=require('cors');
@@ -30,8 +32,8 @@ step:11;app_express.use(urlencoded({extended:true}));
 // const { param } = require('./src/routes/index');
 
 step:9;app_express.use(express.static(__dirname+'/src/assets'));// here we are using the css file
-step : 2// installing the nodemon (that will monitor for any changes in your source and automatically restart your server. Perfect for development.)
-step: 3 // creating src file in that crating the controllers , models and views
+step :2// installing the nodemon (that will monitor for any changes in your source and automatically restart your server. Perfect for development.)
+step:3 // creating src file in that crating the controllers , models and views
  // here we are includeing the router func from src router file
  step:9;app_express.set('layout extractStyles',true);
  step:9;app_express.set('layout extractScripts',true);
@@ -70,6 +72,9 @@ step:12; app_express.use(session({
 step:12;app_express.use(passport.initialize());
 step:12;app_express.use(passport.session());
 step:13;app_express.use(passport.setAuthenticatedUser);
+step:15;app_express.use(flash());
+step:15;app_express.use(setFlash);
+
 
 step:5; app_express.use('/',router);
 step:1;app_express.listen(3000,async()=>{//here we are startig the express applicaiton to the server 3000
