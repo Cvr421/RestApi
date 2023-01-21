@@ -12,6 +12,9 @@ const userSchema=new mongoose.Schema({// Making user model for database
     name:{
         type:String,
         required:true
+    },
+    avatar:{
+        type:String
     }
    
 

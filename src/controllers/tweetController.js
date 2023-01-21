@@ -7,7 +7,9 @@ const create= async function(req,res){
        await Tweet.create({
             content: req.body.content,// we are actually storing into the mongodb database as this parameter
             user: req.user._id
-        })
+        });
+        
+        req.flash('info', 'Tweet Created Successfully');
          return res.redirect('back');
         
     }catch(err){

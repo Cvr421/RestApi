@@ -13,7 +13,8 @@ step:14; const sassMiddleware=require('node-sass-middleware');
 step:15;const flash = require('connect-flash');
 step:15;const {setFlash} = require('./src/config/middleware');
 
-
+step:16;const multer=require('multer');
+step:16;const upload=multer({dest:'./src/uploads/'})
 // step:12; const cors=require('cors');
 const app_express=express(); //refereing the express js to app variale
 step:14;app_express.use(sassMiddleware({
