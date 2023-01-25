@@ -15,8 +15,18 @@ step:15;const {setFlash} = require('./src/config/middleware');
 
 step:16;const multer=require('multer');
 step:16;const upload=multer({dest:'./src/uploads/'})
-// step:12; const cors=require('cors');
+step:12; const cors=require('cors');
 const app_express=express(); //refereing the express js to app variale
+// step:12;app_express.use(cors);
+
+
+const chatEngine = require('http').Server(app_express);
+const {socket} = require('./src/config/sockets');
+const chatSockets = socket(chatEngine);
+// chatEngine.use(cors());
+chatEngine.listen(3001);
+console.log('Chat enginer listening at 3001');
+
 step:14;app_express.use(sassMiddleware({
     src:'./src/assets/scss',
     dest:'./src/assets/css',
