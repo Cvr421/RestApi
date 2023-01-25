@@ -2,7 +2,8 @@ const Comment=require('../models/comment');
 const Tweet=require('../models/tweet');
 const {newCommentMailer} = require('../mailers/comments_mailer');
 
-
+const commentsEmailWorker = require('../workers/commentMailerWorker');
+const queue = require('../config/queue');
 
 
 const create= async function(req,res){
@@ -19,6 +20,18 @@ const create= async function(req,res){
   tweet.comments.push(comment) ;
   tweet.save();
   newCommentMailer(tweet);
+
+  let job = queue.create('email', tweet).save(function(err) {
+    if(err) {
+        console.error("********QUEUE ERROR************");
+        console.error(err);
+        return;
+    }
+    console.log("Email Enqueued", job.id);
+})
+
+
+
   return res.redirect('/') ;
    }catch(err){
     console.error(err);
