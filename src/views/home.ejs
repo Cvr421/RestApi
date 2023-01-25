@@ -15,7 +15,7 @@
 </h1>
 <% if(locals.user) { %>
     <section>
-        <h4>Create A Tweet!</h4>
+        <h4>Create A Tweet! <%=user.name%></h4>
         <form action="/tweets/Create" method="POST">
 
             <textarea name="content" id="" cols="30" rows="10" placeholder="Your tweet.." required></textarea>
@@ -40,10 +40,10 @@
 
     <section>
         <h3>Users</h3>
-        <% for(user of users) { %>
+        <% for(current_user of users) { %>
             <p>
-                <a href="/users/profile/<%= user.id %> ">
-                    <%= user.name %>
+                <a href="/users/profile/<%= current_user.id %> ">
+                    <%= current_user.name %>
                 </a>
             </p>
             <% } %>
@@ -56,7 +56,7 @@
     <script src="/src/assets/js/chat_engine.js"></script>
     <% if(locals.user) { %> 
     <script>
-        new ChatEngine('chat-input', '<%= locals.user._id %>')
+        new ChatEngine('chat-input', '<%= locals.user.name %>')
     </script>
     <% } %> 
     <!-- <%-include('util/_footer'); %> -->
